@@ -1,35 +1,33 @@
 // Take DOM Elements 
 const listCollection = document.querySelector('.list');
 const insertInput = document.querySelector('.insertInput');
+const clearItem = document.querySelector('.clear_item');
 
-// Create DOM Elements
-const optionElement = document.createElement('option');
-
-// Add Item To List Function 
-const addItemList = () => {
-    // console.log(`Input Result: ${inputValue}`);
-    
+// Function Add Item To List 
+const addItemList = () => {   
     insertInput.addEventListener('keypress', event => {
         if (event.key === 'Enter') {
-            let inputValue;
-            inputValue = insertInput.value;
-            let newOption = new Option(inputValue, inputValue);     
+            let inputValue = insertInput.value,
+                newOption = new Option(inputValue, inputValue);   
+
             listCollection.append(newOption);
-            insertInput.value = ''
+            insertInput.value = '';
+
+            clearList()
         }
     })
 }
-
-
-// // Input Listener Function
-// const inputListener = insertInput => {
-//     let inputValue;
-//     insertInput.oninput = () => {
-//         inputValue = insertInput.value;
-//         addItemList(inputValue)
-//     };
-// }
-
 addItemList()
+
+// Clear List Function 
+const clearList = () => {
+    // // Check is Clear Button Ebable
+    (listCollection.options.length >= 1) ? clearItem.disabled = false : clearItem.disabled = true;
+
+    clearItem.addEventListener('click', event => {
+        listCollection.options.length = 0;
+    })
+}
+clearList()
 
 
