@@ -2,6 +2,7 @@
 const listCollection = document.querySelector('.list');
 const insertInput = document.querySelector('.insertInput');
 const clearItem = document.querySelector('.clear_item');
+const deleteBtn = document.querySelector('.delete_item');
 
 // Function Add Item To List 
 const addItemList = () => {   
@@ -21,7 +22,7 @@ addItemList()
 
 // Clear List Function 
 const clearList = () => {
-    // // Check is Clear Button Ebable
+    // Check is Clear Button Ebable
     (listCollection.options.length >= 1) ? clearItem.disabled = false : clearItem.disabled = true;
 
     clearItem.addEventListener('click', event => {
@@ -30,4 +31,22 @@ const clearList = () => {
 }
 clearList()
 
+// Take Selected Option from Select
+const selectedOptions = () => {
+    let selectedItem = listCollection.selectedOptions;
+    
+    listCollection.addEventListener('change', event => {
+        for (let i = 0; i < selectedItem.length; i++) {
+            let selected = selectedItem[i];
+            deleteItem(selected)
+        }
+    });
+}
+selectedOptions()
 
+// Delete Option from Select
+const deleteItem = (selectedItems) => {
+    deleteBtn.addEventListener('click', event => {
+        selectedItems.remove();
+    })
+}
