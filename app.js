@@ -1,12 +1,8 @@
 // Take DOM Elements 
 const listCollection = document.querySelector('.list');
 const insertInput = document.querySelector('.insertInput');
-const clearItem = document.querySelector('.clear_item');
+const clearBtn = document.querySelector('.clear_item');
 const deleteBtn = document.querySelector('.delete_item');
-
-// Disabled Buttons
-clearItem.disabled = true
-deleteBtn.disabled = true
 
 // Function Add Item To List 
 const addItemList = () => {   
@@ -40,12 +36,13 @@ selectedOptions()
 
 // Check is select has option
 const checkIsHasOption = () => {
+
+    // Disabled Buttons
+    clearBtn.disabled = true;
+    deleteBtn.disabled = true;
+
     if (listCollection.options.length >= 1) {
-        clearItem.disabled = false 
-        deleteBtn.disabled = false
-    } else {
-        clearItem.disabled = true
-        deleteBtn.disabled = true
+        clearBtn.disabled = false;
     }
 }
 checkIsHasOption()
@@ -53,7 +50,7 @@ checkIsHasOption()
 // Clear List Function 
 const clearList = () => {
     // Check is Clear Button Ebable
-    clearItem.addEventListener('click', () => {
+    clearBtn.addEventListener('click', () => {
         listCollection.options.length = 0;
         checkIsHasOption()
     })
@@ -62,6 +59,7 @@ clearList()
 
 // Delete Option from Select
 const deleteItem = (selectedItems) => {
+    deleteBtn.disabled = false;
 
     deleteBtn.addEventListener('click', () => {
         selectedItems.remove();
