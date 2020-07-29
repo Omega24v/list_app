@@ -8,12 +8,14 @@ const deleteBtn = document.querySelector('.delete_item');
 const addItemList = () => {   
     insertInput.addEventListener('keypress', event => {
         if (event.key === 'Enter') {
-            let inputValue  = insertInput.value,
-                newOption   = new Option(inputValue, inputValue);   
+            let inputValue = insertInput.value;
+            
+            if (inputValue.length !== 0 && inputValue !== ' ') {
+                let newOption = new Option(inputValue, inputValue);   
+                listCollection.append(newOption);
+            }
 
-            listCollection.append(newOption);
             insertInput.value = '';
-
             checkIsHasOption()
             clearList()
         }
